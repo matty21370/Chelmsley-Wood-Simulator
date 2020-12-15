@@ -12,10 +12,15 @@ public class Player : MonoBehaviourPunCallbacks
     public float whipRate = 0.7F;
     private float nextWhip = 0.0F;
 
+    public AudioClip nigger;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(!photonView.IsMine)
+        {
+            Destroy(Camera.main);
+        }
     }
 
     // Update is called once per frame
@@ -61,12 +66,6 @@ public class Player : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Nigger()
     {
-        foreach(Transform t in transform)
-        {
-            if(t.tag == "Nigger")
-            {
-                t.GetComponent<AudioSource>().Play();
-            }
-        }
+        //GetComponent<AudioSource>().Play("")
     }
 }
