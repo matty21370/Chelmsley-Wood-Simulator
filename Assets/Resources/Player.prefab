@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  whipRate: 0.5
 --- !u!82 &4471873659411215540
 AudioSource:
   m_ObjectHideFlags: 0

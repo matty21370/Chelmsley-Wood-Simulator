@@ -9,6 +9,9 @@ public class Player : MonoBehaviourPunCallbacks
 
     Vector3 movement;
 
+    public float whipRate = 0.7F;
+    private float nextWhip = 0.0F;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +29,9 @@ public class Player : MonoBehaviourPunCallbacks
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0) && Time.time > nextWhip)
         {
+            nextWhip = Time.time + whipRate;
             photonView.RPC("Whip", RpcTarget.All);
         }
     }
