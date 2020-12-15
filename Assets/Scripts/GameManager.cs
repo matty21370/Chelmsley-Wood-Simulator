@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        if(!PhotonNetwork.IsConnected)
+        if (!PhotonNetwork.IsConnected)
         {
             SceneManager.LoadScene(0);
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         Spawn();
     }
 

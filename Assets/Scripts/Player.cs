@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks
 {
     public float speed = 5f;
 
@@ -17,12 +18,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
     {
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+
         transform.position += movement * speed * Time.fixedDeltaTime;
     }
 }
