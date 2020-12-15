@@ -46,5 +46,6 @@ public class Player : MonoBehaviourPunCallbacks
     public void Whip()
     {
         GetComponent<AudioSource>().Play();
+        GetComponentInChildren<Animator>().SetTrigger("Whip");
     }
 }
