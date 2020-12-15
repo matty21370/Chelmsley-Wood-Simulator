@@ -12,7 +12,7 @@ public class Player : MonoBehaviourPunCallbacks
     public float whipRate = 0.7F;
     private float nextWhip = 0.0F;
 
-    public AudioClip nigger;
+    public AudioSource nigger, whip;
 
     // Start is called before the first frame update
     void Start()
@@ -59,13 +59,13 @@ public class Player : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Whip()
     {
-        GetComponent<AudioSource>().Play();
+        whip.Play();
         GetComponentInChildren<Animator>().SetTrigger("Whip");
     }
 
     [PunRPC]
     public void Nigger()
     {
-        //GetComponent<AudioSource>().Play("")
+        nigger.Play();
     }
 }
