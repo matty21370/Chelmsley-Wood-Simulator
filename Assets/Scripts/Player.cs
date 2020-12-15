@@ -34,6 +34,11 @@ public class Player : MonoBehaviourPunCallbacks
             nextWhip = Time.time + whipRate;
             photonView.RPC("Whip", RpcTarget.All);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            photonView.RPC("Nigger", RpcTarget.All);
+        }
     }
 
     private void FixedUpdate()
@@ -51,5 +56,17 @@ public class Player : MonoBehaviourPunCallbacks
     {
         GetComponent<AudioSource>().Play();
         GetComponentInChildren<Animator>().SetTrigger("Whip");
+    }
+
+    [PunRPC]
+    public void Nigger()
+    {
+        foreach(Transform t in transform)
+        {
+            if(t.tag == "Nigger")
+            {
+                t.GetComponent<AudioSource>().Play();
+            }
+        }
     }
 }
