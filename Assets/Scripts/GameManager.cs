@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     private void Awake()
     {
@@ -29,5 +30,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.Disconnect();
     }
 }
