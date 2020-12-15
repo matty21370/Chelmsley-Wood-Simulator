@@ -25,6 +25,11 @@ public class Player : MonoBehaviourPunCallbacks
 
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            photonView.RPC("Whip", RpcTarget.All);
+        }
     }
 
     private void FixedUpdate()
@@ -35,5 +40,11 @@ public class Player : MonoBehaviourPunCallbacks
         }
 
         transform.position += movement * speed * Time.fixedDeltaTime;
+    }
+
+    [PunRPC]
+    public void Whip()
+    {
+        GetComponent<AudioSource>().Play();
     }
 }
