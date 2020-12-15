@@ -14,10 +14,15 @@ public class Player : MonoBehaviourPunCallbacks
 
     public AudioSource nigger, whip;
 
+    public float niggerRate;
+    private float nextNigger = 0.0F;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(!photonView.IsMine)
+        niggerRate = nigger.clip.length;
+
+        if (!photonView.IsMine)
         {
             Destroy(GetComponentInChildren<Camera>());
         }
@@ -40,8 +45,9 @@ public class Player : MonoBehaviourPunCallbacks
             photonView.RPC("Whip", RpcTarget.All);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKey(KeyCode.Space) && Time.time > nextNigger)
         {
+            nextNigger = Time.time + niggerRate;
             photonView.RPC("Nigger", RpcTarget.All);
         }
     }

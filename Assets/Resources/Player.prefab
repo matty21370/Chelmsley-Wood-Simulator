@@ -576,6 +576,7 @@ MonoBehaviour:
   whipRate: 0.5
   nigger: {fileID: 1641738914}
   whip: {fileID: 2828096567187291469}
+  niggerRate: 0
 --- !u!61 &2098386738923612652
 BoxCollider2D:
   m_ObjectHideFlags: 0
