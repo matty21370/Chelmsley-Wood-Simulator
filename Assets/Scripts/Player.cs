@@ -17,6 +17,8 @@ public class Player : MonoBehaviourPunCallbacks
     public float niggerRate;
     private float nextNigger = 0.0F;
 
+    public GameObject theWhip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +38,17 @@ public class Player : MonoBehaviourPunCallbacks
             return;
         }
 
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        if(movement.x > 0.1 || movement.y > 0.1 || movement.x < -0.1 || movement.y < -0.1)
+        {
+            GetComponent<Animator>().SetBool("moving", true);
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("moving", false);
+        }
 
         if(Input.GetMouseButton(0) && Time.time > nextWhip)
         {
@@ -66,7 +77,7 @@ public class Player : MonoBehaviourPunCallbacks
     public void Whip()
     {
         whip.Play();
-        GetComponentInChildren<Animator>().SetTrigger("Whip");
+        theWhip.GetComponent<Animator>().SetTrigger("Whip");
     }
 
     [PunRPC]
