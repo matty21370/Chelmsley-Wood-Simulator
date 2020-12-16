@@ -26,7 +26,7 @@ public class Player : MonoBehaviourPunCallbacks
 
         if (!photonView.IsMine)
         {
-            Destroy(GetComponentInChildren<Camera>());
+            Destroy(Camera.main);
         }
     }
 
